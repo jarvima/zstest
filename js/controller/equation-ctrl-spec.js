@@ -23,11 +23,5 @@ describe("EquationCtrl", function() {
 	it('has functionality', function() {
 		expect(equationScope.equation).toBeDefined();
 		expect(equationScope.equation.quit).toBeDefined();
-		/*
-		expect(childScope.timeOfDay).toBe('morning');
-		expect(childScope.name).toBe('Mattie');
-		expect(grandChildScope.timeOfDay).toBe('evening');
-		expect(grandChildScope.name).toBe('Gingerbreak Baby');
-		*/
 	});
 });

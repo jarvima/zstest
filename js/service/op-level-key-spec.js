@@ -12,6 +12,7 @@ describe("Op Level Keys", function() {
 	}));
 
 	it('generates level keys', function() {
+		console.log('testing op-level-key-spec...');
 		var $op = $injectr.get('$op');
 
 		var nums = {

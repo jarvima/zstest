@@ -13,6 +13,7 @@ describe("Op Text", function() {
 	
 			
 	it('generates operation text', function() {
+		console.log('testing op-text-spec...');
 		var $text = $injectr.get('$text');
 		expect(Op.Add.getText($text)).toBe('Addition');
 		expect(Op.Sub.getText($text)).toBe('Subtraction');

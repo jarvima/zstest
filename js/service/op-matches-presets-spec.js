@@ -13,6 +13,7 @@ describe("Op Presets", function() {
 	
 			
 	it('generates operation presets', function() {
+		console.log('testing op-matches-presets-spec...');
 		var nums = {
 			num1low: 2,
 			num1high: 9,

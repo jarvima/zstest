@@ -13,6 +13,7 @@ describe("Op Within Limits", function() {
 	}));
 
 	it('checks operation limits', function() {
+		console.log('testing op-within-limits-spec...');
 
 		var nums = {
 			num1low: 10,

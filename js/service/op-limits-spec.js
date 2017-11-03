@@ -20,6 +20,7 @@ describe("Op Limits", function() {
 	}
 
 	it('generates operation limits', function() {
+		console.log('testing op-limits-spec...');
 
 		var maxLimits = Op.Add.maxLimits();
 		expect(maxLimits.num1low).toBe(0);

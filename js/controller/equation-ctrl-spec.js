@@ -22,6 +22,5 @@ describe("EquationCtrl", function() {
 
 	it('has functionality', function() {
 		expect(equationScope.equation).toBeDefined();
-		expect(equationScope.equation.quit).toBeDefined();
 	});
 });

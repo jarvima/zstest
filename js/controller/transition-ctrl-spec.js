@@ -18,7 +18,7 @@ describe("TransitionCtrl", function() {
 	}));
 
 	var simData = {
-       	targetNumEqs: 1,
+       	targetNumEqs: 3,
        	clickDelay: 1, // 20
        	
     	clickCount: 0,
@@ -29,6 +29,7 @@ describe("TransitionCtrl", function() {
 	it('displays round results during round transition', function() {
 		expect(transScope.trans).toBeDefined();
 		expect(transScope.trans.start).toBeDefined();
+		expect(transScope.trans.quit).toBeDefined();
 	});
 	
 	it('updates stats', function(done) {
@@ -43,10 +44,13 @@ describe("TransitionCtrl", function() {
 			
 			var time = transScope.trans.fastest();
 
-			expect(transScope.trans.numEqs()).toBe(1);
+			expect(transScope.trans.ansCount()).toBe(3);
 			expect(transScope.trans.fastest()).toBeGreaterThan(3);
-			expect(transScope.trans.slowest()).toBe(time);
-			expect(transScope.trans.averageTime()).toBe(time);
+			expect(transScope.trans.slowest()).toBeGreaterThan(5.5);
+			expect(transScope.trans.slowest()).toBeLessThan(10);
+			expect(transScope.trans.averageTime()).toBeGreaterThan(5.5);
+			expect(transScope.trans.averageTime()).toBeLessThan(7);
+			expect(transScope.trans.averageTime()).not.toBeNaN();
 			
 			done();
 		});

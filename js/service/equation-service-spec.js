@@ -26,11 +26,26 @@ describe("Equation Service", function() {
     	lastFewTime: []
     };
     
-    var storedStats = zappy.cookies.read('stats');
-    simData.totalTime = storedStats.averageTime * storedStats.answerCount;
-    simData.startingCount = storedStats.answerCount;
-    
 	it('updates stats', function(done) {
+		console.log('testing equation-service-spec...');
+
+		var simData = {
+	       	targetNumEqs: 10, // 20 - must be at least 10
+	       	clickDelay: 1, // 20
+	       	
+	    	clickCount: 0,
+	    	totalTime: 0,
+	    	lastFewTime: []
+	    };
+	    
+	    var storedStats = zappy.cookies.read('stats');
+	    simData.totalTime = storedStats.averageTime * storedStats.correctCount;
+	    simData.startingCount = storedStats.correctCount;
+		    
+		var statsData = $injectr.get('$stats').data;
+		var simDataAvg = simData.totalTime / simData.startingCount;
+		expect(simDataAvg).toBeCloseTo(statsData.averageTime, 9);
+		
 		$equation.genEqData();
 
 		var settingsData = $injectr.get('$settings').data;			
@@ -39,12 +54,11 @@ describe("Equation Service", function() {
 		expect(settingsData.op.genAnswer(eqData)).toBe(eqData.ans);
 		expect($equation.ansStr).toBe('' + eqData.ans);
 		
+		simData.testDetails = true;
 		ZTestr.simNumClick($injectr, simData).then(function() {
 			var statsData = $injectr.get('$stats').data;
 			
 			var simDataAvg = simData.totalTime / (simData.targetNumEqs + simData.startingCount);
-			log('simData.totalTime: ' + simData.totalTime + ' simData.targetNumEqs: ' + simData.targetNumEqs + ' simData.startingCount: ' + simData.startingCount);
-			log('checking average: ' + simDataAvg + ' and ' + statsData.averageTime);
 			expect(simDataAvg).toBeCloseTo(statsData.averageTime, 9);
 			
 			var lastFewAvg = 0;
@@ -62,14 +76,6 @@ describe("Equation Service", function() {
 		$equation.genEqData();
 		var eqStr = $equation.getEqStr();
 		expect($equation.getEqStr()).toBe(eqStr);
-		
-		//'use strict';
-		var o = new Object();
-		console.log(o.constructor == Object);
-		var n = new Object(1);
-		console.log(n.constructor == Number);
-		var b = new Object(true);
-		console.log(b.constructor == Boolean);
 	});
 	
 });

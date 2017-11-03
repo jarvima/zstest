@@ -12,6 +12,7 @@ describe("Op Reset Limits", function() {
 	}));
 
 	it('resets operation limits', function() {
+		console.log('testing op-reset-limits-spec...');
 		var nums = {
 			num1low: 10,
 			num1high: 99,
